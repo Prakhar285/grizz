@@ -16,6 +16,3 @@ class tasks():
         if(opt == 1): 
             print("option 1 selected ")
 
-o = int(input("Choose : "))
-if o == 1 : 
-    tasks.call()

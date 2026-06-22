@@ -14,7 +14,7 @@ def save():
     with open(database,'w') as f :
         json.dump(data,f,indent=4)
 
-def inp():
+def get_choice():
     try:
         opt = int(input("Choose : "))
     except(ValueError):
@@ -28,7 +28,7 @@ class TaskManager:
         print("2. View Tasks")
         print("3. Mark Tasks Complete")
         print("4. Exit")
-        self.opt = inp()
+        opt = get_choice()
         if(opt == 1): 
             add = input("Write the task name which you want to add : ")
             data['Tasks'].append({
@@ -65,7 +65,7 @@ class NotesManager:
         print("1. Add Notes")
         print("2. View Notes")
         print("3. Exit")
-        opt = inp()
+        opt = get_choice()
         if(opt == 1): 
             title = input("Write the note title : ")
             note = input("Write the note : ")
@@ -100,7 +100,7 @@ while(True):
     print("2. Notes")
     print("3. Goals")
     print("4. Exit")
-    opt = inp()
+    opt = get_choice()
     if(opt == 1):
         task.call()
     elif(opt == 2):

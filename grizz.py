@@ -17,6 +17,7 @@ def save():
 def get_choice():
     try:
         opt = int(input("Choose : "))
+        return opt
     except(ValueError):
         print("Put some integer man.")
         return

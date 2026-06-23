@@ -94,7 +94,7 @@ task = TaskManager()
 note = NotesManager()
 
 while(True):
-    print("\n"*4)
+    print("\n"*1)
     print("WELCOME TO GRIZZ")
     print("Select from the following tasks to proceed :")
     print("1. Task Manager")

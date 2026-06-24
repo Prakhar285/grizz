@@ -31,7 +31,7 @@ class TaskManager:
         print("4. Exit")
         opt = get_choice()
         if opt is None:
-            pass
+            print("Please enter a appropriate option.")
         elif(opt == 1): 
             add = input("Write the task name which you want to add : ")
             data['Tasks'].append({
@@ -43,20 +43,22 @@ class TaskManager:
         elif(opt == 2):
             x = 1
             for i in data['Tasks']:
-                print(f"{x}.")
-                print(f"Task name : {i['Task name']}")
-                print(f"Task status : {i['Task status']}")
+                print(f"{x}.", end=" ")
+                print(f"Task : {i['Task name']}")
+                print(f"Status : {i['Task status']}")
                 print()
                 x += 1
         elif(opt == 3):
             mark = input("Write the task name which you want to mark as done : ")
+            search = False
             for i in data['Tasks'] :
                 if i['Task name'].lower() == mark.lower() :
                     i["Task status"] = "Done"
+                    search = True
                     save()
                     continue
-                else :
-                    print("Task not found.")
+            if not search:
+                print("Task not found.")
         elif(opt == 4):
             pass
         else : 
@@ -70,7 +72,7 @@ class NotesManager:
         print("3. Exit")
         opt = get_choice()
         if opt is None:
-            pass
+            print("Please enter a appropriate option.")
         elif(opt == 1): 
             title = input("Write the note title : ")
             note = input("Write the note : ")
@@ -83,7 +85,7 @@ class NotesManager:
         elif(opt == 2):
             x = 1
             for i in data["Notes"]:
-                print(f"{x}.")
+                print(f"{x}.",end="")
                 print(f"Note Title : {i['Note title']}")
                 print(f"Note : {i['Note']}")
                 print()
@@ -107,7 +109,7 @@ while(True):
     print("4. Exit")
     opt = get_choice()
     if opt is None:
-        break
+        print("Please enter a appropriate option.")
     elif(opt == 1):
         task.call()
     elif(opt == 2):

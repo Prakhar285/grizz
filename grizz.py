@@ -15,12 +15,12 @@ def save():
         json.dump(data,f,indent=4)
 
 def get_choice():
-    try:
-        opt = int(input("Choose : "))
-        return opt
-    except(ValueError):
-        print("Put some integer man.")
-        return
+    while(True):
+        try:
+            opt = int(input("Choose : "))
+            return opt
+        except(ValueError):
+            print("Put some integer man.")
 
 class TaskManager:
     def call(self):
@@ -30,10 +30,15 @@ class TaskManager:
         print("3. Mark Tasks Complete")
         print("4. Exit")
         opt = get_choice()
-        if opt is None:
-            print("Please enter a appropriate option.")
-        elif(opt == 1): 
-            add = input("Write the task name which you want to add : ")
+        if(opt == 1): 
+            add = input("Write the task name which you want to add : ").strip()
+            if not add:
+                print("Cant be empty!!")
+                return
+            for i in data['Tasks']:
+                if i['Task name'].lower() == add.lower() :
+                    print("Task name already exists.")
+                    return
             data['Tasks'].append({
                 "Task name" : add,
                 "Task status" : "Undone"
@@ -42,8 +47,12 @@ class TaskManager:
             print("Task saved.")
         elif(opt == 2):
             x = 1
+            if not data['Tasks']:
+                print("No tasks available.")
+                return
             for i in data['Tasks']:
-                print(f"{x}.", end=" ")
+                print(f"Task {x}.")
+                print()
                 print(f"Task : {i['Task name']}")
                 print(f"Status : {i['Task status']}")
                 print()
@@ -56,7 +65,8 @@ class TaskManager:
                     i["Task status"] = "Done"
                     search = True
                     save()
-                    continue
+                    print("Task status modified")
+                    break
             if not search:
                 print("Task not found.")
         elif(opt == 4):
@@ -71,11 +81,12 @@ class NotesManager:
         print("2. View Notes")
         print("3. Exit")
         opt = get_choice()
-        if opt is None:
-            print("Please enter a appropriate option.")
-        elif(opt == 1): 
-            title = input("Write the note title : ")
-            note = input("Write the note : ")
+ 
+        if(opt == 1): 
+            title = input("Write the note title : ").strip()
+            note = input("Write the note : ").strip()
+            if not title and not note :
+                return "Write Something!!"
             data['Notes'].append({
                 "Note title" : title,
                 "Note" : note
@@ -84,8 +95,12 @@ class NotesManager:
             print("Your note is saved.")
         elif(opt == 2):
             x = 1
+            if not data["Notes"]:
+                print("No notes available.")
+                return
             for i in data["Notes"]:
-                print(f"{x}.",end="")
+                print(f"Note {x}.")
+                print()
                 print(f"Note Title : {i['Note title']}")
                 print(f"Note : {i['Note']}")
                 print()
@@ -100,7 +115,7 @@ task = TaskManager()
 note = NotesManager()
 
 while(True):
-    print("\n"*1)
+    print()
     print("WELCOME TO GRIZZ")
     print("Select from the following tasks to proceed :")
     print("1. Task Manager")
@@ -108,9 +123,8 @@ while(True):
     print("3. Goals")
     print("4. Exit")
     opt = get_choice()
-    if opt is None:
-        print("Please enter a appropriate option.")
-    elif(opt == 1):
+
+    if(opt == 1):
         task.call()
     elif(opt == 2):
         note.call()

@@ -30,7 +30,9 @@ class TaskManager:
         print("3. Mark Tasks Complete")
         print("4. Exit")
         opt = get_choice()
-        if(opt == 1): 
+        if opt is None:
+            pass
+        elif(opt == 1): 
             add = input("Write the task name which you want to add : ")
             data['Tasks'].append({
                 "Task name" : add,
@@ -49,7 +51,7 @@ class TaskManager:
         elif(opt == 3):
             mark = input("Write the task name which you want to mark as done : ")
             for i in data['Tasks'] :
-                if i['Task name'] == mark :
+                if i['Task name'].lower() == mark.lower() :
                     i["Task status"] = "Done"
                     save()
                     continue
@@ -67,7 +69,9 @@ class NotesManager:
         print("2. View Notes")
         print("3. Exit")
         opt = get_choice()
-        if(opt == 1): 
+        if opt is None:
+            pass
+        elif(opt == 1): 
             title = input("Write the note title : ")
             note = input("Write the note : ")
             data['Notes'].append({
@@ -102,7 +106,9 @@ while(True):
     print("3. Goals")
     print("4. Exit")
     opt = get_choice()
-    if(opt == 1):
+    if opt is None:
+        break
+    elif(opt == 1):
         task.call()
     elif(opt == 2):
         note.call()
@@ -110,3 +116,5 @@ while(True):
         pass
     elif(opt == 4):
         break
+    else: 
+        print("Not a correct Option.")

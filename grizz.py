@@ -85,8 +85,9 @@ class NotesManager:
         if(opt == 1): 
             title = input("Write the note title : ").strip()
             note = input("Write the note : ").strip()
-            if not title and not note :
+            if not title or not note :
                 print("Write Something!!")
+                return
             data['Notes'].append({
                 "Note title" : title,
                 "Note" : note

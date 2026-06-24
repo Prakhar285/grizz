@@ -58,7 +58,7 @@ class TaskManager:
                 print()
                 x += 1
         elif(opt == 3):
-            mark = input("Write the task name which you want to mark as done : ")
+            mark = input("Write the task name which you want to mark as done : ").strip()
             search = False
             for i in data['Tasks'] :
                 if i['Task name'].lower() == mark.lower() :

@@ -20,7 +20,7 @@ def get_choice():
             opt = int(input("Choose : "))
             return opt
         except(ValueError):
-            print("Put some integer man.")
+            print("Invalid input. Please enter a number.")
 
 class TaskManager:
     def call(self):
@@ -86,7 +86,7 @@ class NotesManager:
             title = input("Write the note title : ").strip()
             note = input("Write the note : ").strip()
             if not title or not note :
-                print("Write Something!!")
+                print("Either of them can't be empty.")
                 return
             data['Notes'].append({
                 "Note title" : title,
@@ -132,6 +132,7 @@ while(True):
     elif(opt == 3):
         pass
     elif(opt == 4):
+        print("Thanks for using Grizz")
         break
     else: 
         print("Not a correct Option.")
